@@ -22,8 +22,5 @@
             "Modules\\User\\": "",
             "Modules\\User\\Tests\\": "tests"
         }
-    },
-    "require": {
-        "tymon/jwt-auth": "^0.5.12"
     }
 }
