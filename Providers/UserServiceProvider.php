@@ -31,7 +31,7 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->registerTranslations();
         $this->registerConfig();
-        $this->loadMigrationsFrom(module_path('User', 'Database/Migrations'));
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $router->aliasMiddleware('admin', BouncerMiddleware::class);
         include __DIR__ . '/../Http/helpers.php';
         $this->app->register(EventServiceProvider::class);
@@ -55,15 +55,16 @@ class UserServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        $this->publishes([
-            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
-        );
-        $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/user_image.php'), 'user_image'
-        );
+//        $this->publishes([
+//            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
+//            __DIR__ . '/../src/config/' =>  config_path('config/'),
+//        ], 'config');
+//        $this->mergeConfigFrom(
+//            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
+//        );
+//        $this->mergeConfigFrom(
+//            module_path($this->moduleName, 'Config/user_image.php'), 'user_image'
+//        );
     }
 
     /**
@@ -73,13 +74,13 @@ class UserServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
-        } else {
-            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
-        }
+//        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
+//
+//        if (is_dir($langPath)) {
+//            $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
+//        } else {
+//            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
+//        }
     }
 
     /**
